@@ -1,9 +1,9 @@
 import React from "react";
-import { Button as AntdButton } from "antd";
 import "./App.css";
+import { AppMastHeader } from "./components";
 
 function App() {
-  return <AntdButton type="primary">Button</AntdButton>;
+  return <AppMastHeader />;
 }
 
 export default App;
