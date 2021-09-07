@@ -1,9 +1,14 @@
 import React from "react";
 import "./App.css";
-import { AppMastHeader } from "./components";
+import { AppLeftControls, AppMastHeader } from "./components";
 
 function App() {
-  return <AppMastHeader />;
+  return (
+    <>
+      <AppMastHeader />
+      <AppLeftControls />
+    </>
+  );
 }
 
 export default App;
