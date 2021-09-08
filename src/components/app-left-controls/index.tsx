@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Row as AntdRow,
@@ -8,25 +8,98 @@ import {
   Slider as AntdSlider,
   Upload as AntdUpload,
   Button as AntdButton,
+  UploadProps,
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
+import { useOptionsContext } from "../../context/option-context";
+
+function getBase64(img: any, callback: (imgUrl: string) => void) {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => callback(reader.result as string));
+  reader.readAsDataURL(img);
+}
+
 export default function AppLeftControls() {
-  const [gradientType, setGradientType] = useState("circular");
-  const [gradientCoverage, setGradientCoverage] = useState(0);
-  const [buttonRadius, setButtonRadius] = useState(1);
-  const [titleSpacing, setTitleSpacing] = useState(1);
+  const {
+    dispatch,
+    state: { leftOptions },
+  } = useOptionsContext();
+  const [loading, setLoading] = useState(false);
+  const [gradientOverlay, setGradientOverlay] = useState(
+    leftOptions.gradientOverlay
+  );
+  const [gradientCoverage, setGradientCoverage] = useState(
+    leftOptions.gradientCoverage
+  );
+  const [buttonRadius, setButtonRadius] = useState(leftOptions.buttonRadius);
+  const [titleSpacing, setTitleSpacing] = useState(leftOptions.titleSpacing);
+  const [fileName, setFileName] = useState(leftOptions.fileName);
+  const [previewImage, setPreviewImage] = useState(leftOptions.previewImage);
+  const [previewVisible, setPreviewVisible] = useState(
+    leftOptions.previewVisible
+  );
+
+  useEffect(() => {
+    dispatch({
+      type: "UPDATE_LEFT_OPTIONS",
+      payload: {
+        buttonRadius,
+        titleSpacing,
+        fileName,
+        previewImage,
+        previewVisible,
+        gradientCoverage,
+        gradientOverlay,
+      },
+    });
+  }, [
+    dispatch,
+    buttonRadius,
+    titleSpacing,
+    fileName,
+    previewImage,
+    previewVisible,
+    gradientOverlay,
+    gradientCoverage,
+  ]);
+
+  const props: UploadProps = {
+    name: "file",
+    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+    headers: {
+      authorization: "authorization-text",
+    },
+    onChange(info) {
+      if (info.file.status !== "uploading") {
+        setLoading(true);
+      }
+      if (info.file.status === "done") {
+        setFileName(info.file.name);
+        getBase64(info.file.originFileObj, (imgUrl) => {
+          setLoading(false);
+          setPreviewVisible(true);
+          setPreviewImage(imgUrl);
+          if (info.fileList.length > 1) info.fileList.shift();
+        });
+      }
+      if (info.file.status === "removed") {
+        setPreviewVisible(false);
+        setPreviewImage("qijin-xu.png");
+      }
+    },
+  };
 
   return (
     <section>
       <AntdRow>
         <AntdCol span={6}>
-          <label htmlFor="gradientType">Gradient Type</label>
+          <label htmlFor="gradientOverlay">Gradient Type</label>
         </AntdCol>
         <AntdCol span={18}>
           <AntdRadio.Group
-            value={gradientType}
-            onChange={(e) => setGradientType(e.target.value)}
+            value={gradientOverlay}
+            onChange={(e) => setGradientOverlay(e.target.value)}
             defaultValue="circular"
           >
             <AntdRadio.Button value="circular">Circular</AntdRadio.Button>
@@ -109,7 +182,7 @@ export default function AppLeftControls() {
           <label htmlFor="upload">Upload a new image</label>
         </AntdCol>
         <AntdCol span={18}>
-          <AntdUpload>
+          <AntdUpload {...props}>
             <AntdButton icon={<UploadOutlined />}>Click to upload</AntdButton>
           </AntdUpload>
         </AntdCol>

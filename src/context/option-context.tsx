@@ -1,6 +1,6 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
-type leftOptionsProps = {
+type LeftOptionsProps = {
   buttonRadius: number;
   titleSpacing: number;
   gradientCoverage: number;
@@ -10,7 +10,7 @@ type leftOptionsProps = {
   previewVisible: boolean;
 };
 
-type rightOptionsProps = {
+type RightOptionsProps = {
   buttonColor: string;
   gradientColor: string;
   buttonHoverColor: string;
@@ -18,20 +18,20 @@ type rightOptionsProps = {
 };
 
 type Action =
-  | { type: "UPDATE_LEFT_OPTIONS" }
+  | { type: "UPDATE_LEFT_OPTIONS"; payload: LeftOptionsProps }
   | { type: "UPDATE_RIGHT_OPTIONS" };
 
-type optionsProps = {
-  leftOptions: leftOptionsProps;
-  rightOptions: rightOptionsProps;
+type OptionsProps = {
+  leftOptions: LeftOptionsProps;
+  rightOptions: RightOptionsProps;
 };
 
 type AppOptionsContext = {
-  state: optionsProps;
+  state: OptionsProps;
   dispatch: React.Dispatch<Action>;
 };
 
-const initialState: optionsProps = {
+const initialState: OptionsProps = {
   leftOptions: {
     buttonRadius: 5,
     titleSpacing: 40,
@@ -51,10 +51,13 @@ const initialState: optionsProps = {
 
 const OptionContext = createContext<AppOptionsContext>({} as AppOptionsContext);
 
-function reducer(state: optionsProps, action: Action) {
+function reducer(state: OptionsProps, action: Action) {
   switch (action.type) {
     case "UPDATE_LEFT_OPTIONS": {
-      return state;
+      return {
+        ...state,
+        leftOptions: action.payload,
+      };
     }
     case "UPDATE_RIGHT_OPTIONS": {
       return state;
@@ -63,6 +66,10 @@ function reducer(state: optionsProps, action: Action) {
       return state;
     }
   }
+}
+
+export function useOptionsContext() {
+  return useContext(OptionContext);
 }
 
 export default function OptionsContextProvider({
