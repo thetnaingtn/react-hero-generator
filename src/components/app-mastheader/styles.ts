@@ -1,19 +1,21 @@
-import styles from "styled-components/macro";
+import styles, { css } from "styled-components/macro";
 
-type stylesMastHeadProps = {
+type StylesMastHeadProps = {
   background?: string;
 };
 
-type stylesMastHeadTitle = {
+type StylesMastHeadTitleProps = {
   marginBottom?: string;
 };
 
-type stylesMastHeadButtonProps = {
-  borderRadius?: number;
-  background?: string;
+type StylesMastHeadButtonProps = {
+  buttonHoverColor: string;
+  borderRadius: number;
+  buttonColor: string;
+  button: boolean;
 };
 
-export const StylesMastHead = styles.section<stylesMastHeadProps>`
+export const StylesMastHead = styles.section<StylesMastHeadProps>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,10 +24,15 @@ export const StylesMastHead = styles.section<stylesMastHeadProps>`
     width: 100%;
     height: 60vh;
     overflow: hidden;
+    ${({ background }) =>
+      background &&
+      css`
+        background: ${background};
+      `}
     background-size: cover !important;
 `;
 
-export const StylesMastHeadTitle = styles.h1<stylesMastHeadTitle>`
+export const StylesMastHeadTitle = styles.h1<StylesMastHeadTitleProps>`
     font-family: "Tungsten A", "Tungsten B";
     font-style: normal;
     font-weight: 500;
@@ -36,7 +43,15 @@ export const StylesMastHeadTitle = styles.h1<stylesMastHeadTitle>`
     text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
 `;
 
-export const StylesMastHeadButton = styles.button<stylesMastHeadButtonProps>`
+export const StylesMastHeadButton = styles.button.attrs<StylesMastHeadButtonProps>(
+  ({ buttonColor, borderRadius, button }) => ({
+    style: {
+      display: button ? "block" : "none",
+      backgroundColor: buttonColor,
+      borderRadius,
+    },
+  })
+)<StylesMastHeadButtonProps>`
     display: inline-block;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -52,5 +67,9 @@ export const StylesMastHeadButton = styles.button<stylesMastHeadButtonProps>`
     &:focus{
         outline: 1px solid #fff;
         outline-offset: -4px;
+    }
+    &:hover{
+      background-color:${({ buttonHoverColor }) =>
+        `${buttonHoverColor} !important`}
     }
 `;
