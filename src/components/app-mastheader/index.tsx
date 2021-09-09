@@ -11,7 +11,9 @@ export default function AppMastHeader() {
   } = useOptionsContext();
   return (
     <StylesMastHead>
-      <StylesMastHeadTitle>The Hero Generator</StylesMastHeadTitle>
+      <StylesMastHeadTitle marginBottom={leftOptions.titleSpacing}>
+        The Hero Generator
+      </StylesMastHeadTitle>
       <StylesMastHeadButton
         button={rightOptions.button}
         borderRadius={leftOptions.buttonRadius}

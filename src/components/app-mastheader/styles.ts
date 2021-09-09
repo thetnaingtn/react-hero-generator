@@ -5,7 +5,7 @@ type StylesMastHeadProps = {
 };
 
 type StylesMastHeadTitleProps = {
-  marginBottom?: string;
+  marginBottom: number;
 };
 
 type StylesMastHeadButtonProps = {
@@ -32,7 +32,13 @@ export const StylesMastHead = styles.section<StylesMastHeadProps>`
     background-size: cover !important;
 `;
 
-export const StylesMastHeadTitle = styles.h1<StylesMastHeadTitleProps>`
+export const StylesMastHeadTitle = styles.h1.attrs<StylesMastHeadTitleProps>(
+  ({ marginBottom }) => ({
+    style: {
+      marginBottom,
+    },
+  })
+)<StylesMastHeadTitleProps>`
     font-family: "Tungsten A", "Tungsten B";
     font-style: normal;
     font-weight: 500;
