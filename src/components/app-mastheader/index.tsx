@@ -1,4 +1,5 @@
 import { useOptionsContext } from "../../context/option-context";
+import { useBackgroundCss } from "../../hooks/use-css";
 import {
   StylesMastHead,
   StylesMastHeadTitle,
@@ -9,8 +10,9 @@ export default function AppMastHeader() {
   const {
     state: { leftOptions, rightOptions },
   } = useOptionsContext();
+  let background = useBackgroundCss();
   return (
-    <StylesMastHead>
+    <StylesMastHead background={background}>
       <StylesMastHeadTitle marginBottom={leftOptions.titleSpacing}>
         The Hero Generator
       </StylesMastHeadTitle>

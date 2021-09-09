@@ -1,10 +1,16 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-type LeftOptionsProps = {
+export type LeftOptionsProps = {
   buttonRadius: number;
   titleSpacing: number;
   gradientCoverage: number;
-  gradientOverlay: string;
+  gradientOverlay:
+    | "up"
+    | "down"
+    | "diagonalup"
+    | "diagonaldown"
+    | "none"
+    | "circular";
   previewImage: string;
   fileName: string;
   previewVisible: boolean;
