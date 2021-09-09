@@ -19,7 +19,7 @@ type RightOptionsProps = {
 
 type Action =
   | { type: "UPDATE_LEFT_OPTIONS"; payload: LeftOptionsProps }
-  | { type: "UPDATE_RIGHT_OPTIONS" };
+  | { type: "UPDATE_RIGHT_OPTIONS"; payload: RightOptionsProps };
 
 type OptionsProps = {
   leftOptions: LeftOptionsProps;
@@ -43,7 +43,7 @@ const initialState: OptionsProps = {
   },
   rightOptions: {
     buttonColor: "#098191",
-    gradientColor: "rgb(0, 0, 0)",
+    gradientColor: "#000000",
     buttonHoverColor: "#63b6b8",
     button: true,
   },
@@ -60,7 +60,10 @@ function reducer(state: OptionsProps, action: Action) {
       };
     }
     case "UPDATE_RIGHT_OPTIONS": {
-      return state;
+      return {
+        ...state,
+        rightOptions: action.payload,
+      };
     }
     default: {
       return state;
