@@ -71,4 +71,11 @@ export function useBackgroundCss() {
   return `${useGradient()}url(${img}) no-repeat center center scroll`;
 }
 
-export function useOutputCss() {}
+export function useOutputCss() {
+  const {
+    state: { leftOptions },
+  } = useOptionsContext();
+  return `${useGradient()}url(${
+    leftOptions.fileName
+  }) no-repeat center center scroll`;
+}

@@ -1,5 +1,5 @@
 import { StylesMain } from "../app-bottom-drawer/styles";
-import { AppLeftControls, AppRightControls } from "..";
+import { AppCodeDrawer, AppLeftControls, AppRightControls } from "..";
 
 export default function AppBottomDrawer() {
   return (
@@ -9,6 +9,7 @@ export default function AppBottomDrawer() {
       </aside>
       <aside>
         <AppRightControls />
+        <AppCodeDrawer />
       </aside>
       <aside>
         <h3>About this project</h3>
