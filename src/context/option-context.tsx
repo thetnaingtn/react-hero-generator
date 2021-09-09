@@ -37,8 +37,10 @@ const initialState: OptionsProps = {
     titleSpacing: 40,
     gradientCoverage: 37,
     gradientOverlay: "circular",
-    previewImage: "https://hero-generator.netlify.app/qijin-xu.png",
-    fileName: "qijin-xu.png",
+    previewImage:
+      "https://images.unsplash.com/photo-1630700246857-3113649eb3b6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2982&q=80",
+    fileName:
+      "https://images.unsplash.com/photo-1630700246857-3113649eb3b6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2982&q=80",
     previewVisible: false,
   },
   rightOptions: {
