@@ -1,12 +1,17 @@
 import { Button as AntdButton } from "antd";
+import { useRef, useState } from "react";
 
 import { useOutputCss } from "../../hooks/use-css";
 import { StylesCode, StylesCopyButton } from "./styles";
 import { useOptionsContext } from "../../context/option-context";
+
 export default function AppCodeOutput() {
   const {
     state: { leftOptions, rightOptions },
   } = useOptionsContext();
+
+  const code = useRef<HTMLDivElement>(null);
+  const [codeCopied, setCodeCopied] = useState(false);
 
   const buttonOutput = `
     button {
@@ -72,17 +77,41 @@ export default function AppCodeOutput() {
       }
     </section>
   `;
+
+  function copy(e: React.MouseEvent) {
+    e.preventDefault();
+    let text = code.current,
+      range,
+      selection;
+    if (window.getSelection !== undefined) {
+      selection = window.getSelection();
+      range = document.createRange();
+      if (text) range.selectNodeContents(text);
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+    }
+    let copied = document.execCommand("copy");
+    if (copied) {
+      setCodeCopied(true);
+      setTimeout(() => {
+        setCodeCopied(false);
+      }, 2000);
+    }
+  }
   return (
     <div>
-      <div>
+      <div ref={code}>
         <h3 style={{ color: "#eee" }}>CSS</h3>
         <StylesCode>{mastHeadOutput}</StylesCode>
         {rightOptions.button && <StylesCode>{buttonOutput}</StylesCode>}
         <StylesCode html>{htmlOutput}</StylesCode>
       </div>
       <StylesCopyButton>
-        <AntdButton style={{ background: "#098191", color: "#eee" }}>
-          Copy to the clipboard!
+        <AntdButton
+          onClick={copy}
+          style={{ background: "#098191", color: "#eee" }}
+        >
+          {!codeCopied ? "Copy to the clipboard!" : "Code copied"}
         </AntdButton>
       </StylesCopyButton>
     </div>
