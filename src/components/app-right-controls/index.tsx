@@ -31,7 +31,7 @@ export default function AppRightControls() {
   return useMemo(() => {
     return (
       <section>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={12}>
             <label htmlFor="button">Button</label>
           </AntdCol>
@@ -42,7 +42,7 @@ export default function AppRightControls() {
             />
           </AntdCol>
         </AntdRow>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={12}>
             <label htmlFor="buttonColor">Button Color</label>
           </AntdCol>
@@ -55,7 +55,7 @@ export default function AppRightControls() {
             />
           </AntdCol>
         </AntdRow>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={12}>
             <label htmlFor="buttonHoverColor">Button Hover Color</label>
           </AntdCol>
@@ -68,7 +68,7 @@ export default function AppRightControls() {
             />
           </AntdCol>
         </AntdRow>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={12}>
             <label htmlFor="gradientColor">Gradient Color</label>
           </AntdCol>

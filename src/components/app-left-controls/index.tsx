@@ -95,7 +95,7 @@ export default function AppLeftControls() {
   return useMemo(() => {
     return (
       <section>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={6}>
             <label htmlFor="gradientOverlay">Gradient Type</label>
           </AntdCol>
@@ -114,7 +114,7 @@ export default function AppLeftControls() {
             </AntdRadio.Group>
           </AntdCol>
         </AntdRow>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={6}>
             <label htmlFor="gradientCoverage">Gradient Coverage</label>
           </AntdCol>
@@ -136,7 +136,7 @@ export default function AppLeftControls() {
             />
           </AntdCol>
         </AntdRow>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={6}>
             <label htmlFor="buttonRadius">Button Radius</label>
           </AntdCol>
@@ -158,7 +158,7 @@ export default function AppLeftControls() {
             />
           </AntdCol>
         </AntdRow>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={6}>
             <label htmlFor="titleSpacing">Title Spacing</label>
           </AntdCol>
@@ -180,7 +180,7 @@ export default function AppLeftControls() {
             />
           </AntdCol>
         </AntdRow>
-        <AntdRow>
+        <AntdRow style={{ marginBottom: "20px" }}>
           <AntdCol span={6}>
             <label htmlFor="upload">Upload a new image</label>
           </AntdCol>
