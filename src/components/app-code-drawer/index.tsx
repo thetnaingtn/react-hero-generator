@@ -7,7 +7,12 @@ export default function AppCodeDrawer() {
   const [visible, setVisible] = useState(false);
   return (
     <div>
-      <AntdButton onClick={() => setVisible(true)}>
+      <AntdButton
+        type="primary"
+        danger
+        size="large"
+        onClick={() => setVisible(true)}
+      >
         Please may I have some code
       </AntdButton>
       <AntdDrawer
