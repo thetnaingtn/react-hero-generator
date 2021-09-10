@@ -39,7 +39,7 @@ export const StylesMastHeadTitle = styles.h1.attrs<StylesMastHeadTitleProps>(
     },
   })
 )<StylesMastHeadTitleProps>`
-    font-family: "Tungsten A", "Tungsten B";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';;
     font-style: normal;
     font-weight: 500;
     color: #eee;
