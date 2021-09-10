@@ -57,13 +57,28 @@ export default function AppCodeOutput() {
         text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
         margin-bottom: ${leftOptions.titleSpacing}px;
     }`;
+
+  const htmlOutput = `
+    <section class="masthead" role="img" aria-label="Image Description">
+      <h1>
+        The Hero Generator
+      </h1>
+      ${
+        rightOptions.button
+          ? `<button>
+        When a hero comes along
+      </button>`
+          : ""
+      }
+    </section>
+  `;
   return (
     <div>
       <div>
         <h3 style={{ color: "#eee" }}>CSS</h3>
         <StylesCode>{mastHeadOutput}</StylesCode>
         {rightOptions.button && <StylesCode>{buttonOutput}</StylesCode>}
-        <StylesCode html></StylesCode>
+        <StylesCode html>{htmlOutput}</StylesCode>
       </div>
       <StylesCopyButton>
         <AntdButton style={{ background: "#098191", color: "#eee" }}>
